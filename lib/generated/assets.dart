@@ -49,20 +49,6 @@ Ordo Caudata memiliki bentuk tubuh seperti ular, kepala yang kecil namun tidak p
 
   """;
 
-  static const String Petunjuk = """
-  Petunjuk Praktikum\n
-1.	Disiapkan sampel berupa satu ekor katak dan satu ekor kodok
-2.	Sampel diletakkan di atas meja
-3.	Diamati bagian Kepala, Badan dan Alat Gerak pada katak dan kodok yang ditemukan tersebut.
-4.	Dideskripsikan masing-masing bagian yang teramati
-5.	Lakukan identifikasi sampel tersebut dengan cara:
-  a.	Klik menu Identifikasi
-  b.	Klik Browser Foto
-  c.	Dipilih gambar Anura
-  d.	Identifikasilah sampel yang ditemukan dengan beragam foto yang tersedia
-  e.	Apabila telah menemukan foto yang sesuai, klik detail dan kemudian bacalah keterangan spesies yang muncul.
-  f.	Silahkan salin hasil identifikasi ke kolom pencarian Google.
-  """;
 
   static const String Tentang = """
   \n

@@ -10,11 +10,10 @@ class Identifikasi extends StatefulWidget {
 }
 
 class _IdentifikasiState extends State<Identifikasi> {
-  @override
+   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
+    return SafeArea(
+      child: Scaffold(
         body: wv_identifikasi(),
       ),
     );

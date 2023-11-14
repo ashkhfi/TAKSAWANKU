@@ -1,74 +1,50 @@
 import 'package:flutter/material.dart';
-import 'package:taskwanku1/model/model_materi.dart';
-import 'package:taskwanku1/pages/isiMateri.dart';
+import '../model/materiModel.dart';
+import 'ViewPDF.dart';
 
-class Materi extends StatelessWidget {
-  const Materi({Key? key}) : super(key: key);
+class Materi extends StatefulWidget {
+  const Materi({super.key});
+
+  @override
+  State<Materi> createState() => _MateriState();
+}
+
+class _MateriState extends State<Materi> {
+  final List<MateriModel> daftarMateri = [
+    MateriModel(
+        nama: 'Pengertian Ambphibia', file: 'assets/file/pengertian.pdf'),
+    MateriModel(nama: 'Ciri-ciri Ambphibia', file: 'assets/file/ciri.pdf'),
+    MateriModel(nama: 'Ordo Ambphibia', file: 'assets/file/ordo.pdf'),
+    // Tambahkan lebih banyak materi sesuai kebutuhan
+  ];
 
   @override
   Widget build(BuildContext context) {
-    final item = [
-      modelMateri(judul: "Materi 1", isi: "Isi Materi 1"),
-    ];
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        body: SafeArea(
-          child: Stack(children: [
-            Padding(
-              padding: const EdgeInsets.fromLTRB(8, 10, 8, 0),
-              child: Container(
-                width: double.maxFinite,
-                height: 70.0,
-                decoration: const BoxDecoration(
-                  color: Colors.blue,
-                  borderRadius: BorderRadius.all(Radius.circular(20)),
-                ),
-                child: Center(
-                    child: Text(
-                  "Materi",
-                  style: TextStyle(fontSize: 30, color: Colors.orange),
-                )),
-              ),
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Materi"),
+        centerTitle: true,
+      ),
+      body: ListView.builder(
+        itemCount: daftarMateri.length,
+        itemBuilder: (context, index) {
+          MateriModel materi = daftarMateri[index];
+          return Card(
+            child: ListTile(
+              leading: const Icon(Icons.book_rounded),
+              title: Text(materi.nama),
+              // Tambahkan aksi atau fungsi yang diinginkan saat ListTile diklik
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) =>
+                          ViewPdf(title: materi.nama, file: materi.file)),
+                );
+              },
             ),
-            Padding(
-              padding: EdgeInsets.fromLTRB(30, 90, 30, 30),
-              child: Padding(
-                padding: EdgeInsets.all(5),
-                child: ListView.builder(
-                  itemCount: item.length,
-                  itemBuilder: (context, index) {
-                    return InkWell(
-                      onTap: () {
-                        // aksi yang diinginkan saat container ditekan
-                        Navigator.of(context, rootNavigator: true)
-                            .push(MaterialPageRoute(builder: (_) => IsiMateri()));
-                      },
-                      child: Card(
-                        shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.all(Radius.circular(15))),
-                        elevation: 10,
-
-                        child: Container(
-                          decoration: BoxDecoration(
-                            borderRadius: BorderRadiusDirectional.circular(30),
-
-                          ),
-                          margin: EdgeInsets.only(bottom: 15),
-                          child: ListTile(
-                            title: Text(item[index].judul),
-                            leading: Icon(Icons.book),
-                            iconColor: Colors.orange,
-                            trailing: Text("baca", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.orange),),
-                          ),
-                        ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-            ),
-          ]),
-        ),
+          );
+        },
       ),
     );
   }

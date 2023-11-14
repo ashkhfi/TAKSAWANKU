@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:taskwanku1/pages/Tentang.dart';
-import 'package:taskwanku1/pages/Pengantar.dart';
-import '../pages/Tujuan.dart';
-import './Pengantar.dart';
-import './Tata_tertib.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'ViewPDF.dart';
 
 class Beranda extends StatefulWidget {
   const Beranda({Key? key}) : super(key: key);
@@ -13,85 +10,135 @@ class Beranda extends StatefulWidget {
 }
 
 class _BerandaState extends State<Beranda> {
+  int _current = 0;
+  final CarouselController _controller = CarouselController();
+
+  List<String> imgList = [
+    'assets/images/1.png',
+    'assets/images/2.png',
+    'assets/images/3.png',
+    'assets/images/4.png',
+    'assets/images/5.png',
+  ];
+  late List<Widget> imageSliders;
+
   @override
-  Widget build(BuildContext context) {
-    return berandaPage();
-  }
-}
-
-class berandaPage extends StatelessWidget {
-  const berandaPage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return SafeArea(
-      child: MaterialApp(
-        navigatorKey: GlobalContextService.navigatorKey,
-        debugShowCheckedModeBanner: false,
-        home: Scaffold(
-
-          body: Stack(
-            children: [
-              Padding(
-                padding: const EdgeInsets.fromLTRB(8, 10, 8, 0),
-                child: Container(
-                  width: double.maxFinite,
-                  height: 70.0,
-                  decoration: const BoxDecoration(
-                    color: Colors.blue,
-                    borderRadius: BorderRadius.all(Radius.circular(20)),
-                  ),
-                  child: const Center(
-                      child: Text(
-                        "Beranda",
-                        style: TextStyle(fontSize: 30, color: Colors.orange),
-                      )),
-                ),
-              ),
-              Align(
-                alignment: const AlignmentDirectional(0, 0),
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    Expanded(
-                      flex: 2,
-                      child: Align(
-                        alignment: const AlignmentDirectional(0, 0),
-                        child: Row(
-                          mainAxisSize: MainAxisSize.max,
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          crossAxisAlignment: CrossAxisAlignment.center,
-                          children: [
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                IconText(
-                                    "assets/Tatatertib.png", "Tata Tertib", TataTertib()),
-                                IconText("assets/tentang.png", "Tentang", Tentang()),
+  void initState() {
+    super.initState();
+    imageSliders = imgList
+        .map((item) => Container(
+              margin: const EdgeInsets.all(5.0),
+              child: ClipRRect(
+                borderRadius: const BorderRadius.all(Radius.circular(5.0)),
+                child: Stack(
+                  children: <Widget>[
+                    Image.asset(item, fit: BoxFit.cover, width: 1000.0),
+                    Positioned(
+                        bottom: 0.0,
+                        left: 0.0,
+                        right: 0.0,
+                        child: Container(
+                          decoration: const BoxDecoration(
+                            gradient: LinearGradient(
+                              colors: [
+                                Color.fromARGB(200, 0, 0, 0),
+                                Color.fromARGB(0, 0, 0, 0)
                               ],
+                              begin: Alignment.bottomCenter,
+                              end: Alignment.topCenter,
                             ),
-                            Column(
-                              mainAxisSize: MainAxisSize.min,
-                              mainAxisAlignment: MainAxisAlignment.end,
-                              crossAxisAlignment: CrossAxisAlignment.end,
-                              children: [
-                                IconText("assets/Pengantar.png", "Pengantar", Pengantar()),
-                                IconText("assets/tujuan.png", "Petunjuk", Tujuan()),
-                              ],
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
+                          ),
+                        ))
                   ],
                 ),
               ),
+            ))
+        .toList();
+  }
 
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Beranda"),
+        centerTitle: true,
+      ),
+      body: Column(
+        children: [
+          Column(
+            children: [
+              CarouselSlider(
+                items: imageSliders,
+                carouselController: _controller,
+                options: CarouselOptions(
+                  autoPlay: true,
+                  enlargeCenterPage: true,
+                  aspectRatio: 2.0,
+                  onPageChanged: (index, reason) {
+                    setState(() {
+                      _current = index;
+                    });
+                  },
+                ),
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: imgList.asMap().entries.map((entry) {
+                  return GestureDetector(
+                    onTap: () => _controller.animateToPage(entry.key),
+                    child: Container(
+                      width: 12.0,
+                      height: 12.0,
+                      margin: const EdgeInsets.symmetric(
+                          vertical: 8.0, horizontal: 4.0),
+                      decoration: BoxDecoration(
+                          shape: BoxShape.circle,
+                          color: (Theme.of(context).brightness ==
+                                      Brightness.dark
+                                  ? Colors.white
+                                  : Colors.black)
+                              .withOpacity(_current == entry.key ? 0.9 : 0.4)),
+                    ),
+                  );
+                }).toList(),
+              ),
             ],
           ),
-        ),
+          Column(
+            mainAxisSize: MainAxisSize.max,
+            children: [
+              Row(
+                mainAxisSize: MainAxisSize.max,
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      IconText(context, "assets/Tatatertib.png", "Tata Tertip",
+                          'assets/file/tatip.pdf'),
+                      IconText(context, "assets/tentang.png", "Tentang",
+                          'assets/file/tentang.pdf'),
+                    ],
+                  ),
+                  Column(
+                    mainAxisSize: MainAxisSize.min,
+                    mainAxisAlignment: MainAxisAlignment.end,
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      IconText(context, "assets/Pengantar.png", "Pengantar",
+                          'assets/file/kata_pengantar.pdf'),
+                      IconText(context, "assets/tujuan.png", "Petunjuk",
+                          'assets/file/petunjuk.pdf'),
+                    ],
+                  ),
+                ],
+              ),
+            ],
+          ),
+        ],
       ),
     );
   }
@@ -101,9 +148,9 @@ class GlobalContextService {
   static GlobalKey<NavigatorState> navigatorKey = GlobalKey<NavigatorState>();
 }
 
-Widget dialog_beranda(String text) {
+Widget dialogBeranda(String text) {
   return Dialog(
-    child: Container(
+    child: SizedBox(
       width: 200,
       height: 300,
       child: Center(
@@ -116,12 +163,14 @@ Widget dialog_beranda(String text) {
   );
 }
 
-Widget IconText(String assets, String text, Widget page) {
+Widget IconText(
+    BuildContext context, String assets, String title, String file) {
   return GestureDetector(
     onTap: () {
-      Navigator.of( GlobalContextService.navigatorKey.currentContext!, rootNavigator: true).push(MaterialPageRoute(
-        builder: (_) => page,
-      ),
+      Navigator.push(
+        context,
+        MaterialPageRoute(
+            builder: (context) => ViewPdf(title: title, file: file)),
       );
     },
     child: Column(
@@ -132,7 +181,7 @@ Widget IconText(String assets, String text, Widget page) {
           height: 150,
         ),
         Text(
-          text,
+          title,
           style: const TextStyle(
               fontSize: 20, fontWeight: FontWeight.bold, color: Colors.grey),
         )

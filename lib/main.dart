@@ -1,3 +1,4 @@
+
 import 'package:flutter/material.dart';
 
 import './pages/Beranda.dart';
@@ -5,6 +6,7 @@ import './pages/Identifikasi.dart';
 import './pages/Test.dart';
 import './pages/Video.dart';
 import './pages/Materi.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -15,6 +17,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+      theme: ThemeData(
+        textTheme: const TextTheme(
+          bodyText2: TextStyle(
+            fontFamily:
+                'Montserrat', // Gunakan nama font yang sesuai dengan yang Anda tentukan di pubspec.yaml
+          ),
+        ),
+      ),
       home: MyHomePage(),
     );
   }
@@ -41,15 +51,15 @@ class _MyHomePageState extends State<MyHomePage> {
       home: Scaffold(
         // appBar: AppBar(backgroundColor: Colors.grey,),
         body: _selectedIndex == 0
-            ? Beranda()
+            ?  const Beranda()
             : _selectedIndex == 1
-                ? Materi()
+                ? const Materi()
                 : _selectedIndex == 2
-                    ? Identifikasi()
+                    ? const Identifikasi()
                     : _selectedIndex == 3
                         ? Video()
                         : _selectedIndex == 4
-                            ? Test()
+                            ? const Test()
                             : const Text("data"),
         bottomNavigationBar: BottomNavigationBar(
           items: const <BottomNavigationBarItem>[
@@ -75,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ],
           currentIndex: _selectedIndex,
-          selectedItemColor: Colors.amber[800],
+          selectedItemColor: Colors.blue,
           unselectedItemColor: Colors.grey,
           onTap: _onItemTapped,
         ),
