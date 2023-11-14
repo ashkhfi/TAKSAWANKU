@@ -60,7 +60,7 @@ class _BerandaState extends State<Beranda> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Beranda"),
+        title: const Text("Beranda"),
         centerTitle: true,
       ),
       body: Column(
