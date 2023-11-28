@@ -1,4 +1,3 @@
-
 import 'package:flutter/material.dart';
 
 import './pages/Beranda.dart';
@@ -6,7 +5,7 @@ import './pages/Identifikasi.dart';
 import './pages/Test.dart';
 import './pages/Video.dart';
 import './pages/Materi.dart';
-
+import 'pages/onboarding.dart';
 
 void main() {
   runApp(MyApp());
@@ -25,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: MyHomePage(),
+      home: const Onboarding(),
     );
   }
 }
@@ -46,49 +45,52 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        // appBar: AppBar(backgroundColor: Colors.grey,),
-        body: _selectedIndex == 0
-            ?  const Beranda()
-            : _selectedIndex == 1
-                ? const Materi()
-                : _selectedIndex == 2
-                    ? const Identifikasi()
-                    : _selectedIndex == 3
-                        ? Video()
-                        : _selectedIndex == 4
-                            ? const Test()
-                            : const Text("data"),
-        bottomNavigationBar: BottomNavigationBar(
-          items: const <BottomNavigationBarItem>[
-            BottomNavigationBarItem(
-              icon: Icon(Icons.home),
-              label: "Beranda",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.menu_book),
-              label: "Materi",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.youtube_searched_for),
-              label: "Identifikasi",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.ondemand_video),
-              label: "Video",
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.assignment_outlined),
-              label: "Test",
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          selectedItemColor: Colors.blue,
-          unselectedItemColor: Colors.grey,
-          onTap: _onItemTapped,
-        ),
+    return Scaffold(
+      // appBar: AppBar(backgroundColor: Colors.grey,),
+      body: _selectedIndex == 0
+          ? const Beranda()
+          : _selectedIndex == 1
+              ? const Materi()
+              : _selectedIndex == 2
+                  ? const Identifikasi()
+                  : _selectedIndex == 3
+                      ? Video()
+                      : _selectedIndex == 4
+                          ? const Test()
+                          : const Text("data"),
+      bottomNavigationBar: BottomNavigationBar(
+        showUnselectedLabels: true,
+        selectedItemColor:  const Color(0xFFFAEED1),
+        unselectedItemColor: Colors.grey[700],
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            backgroundColor: Color(0xFFBBAB8C),
+            label: "Beranda",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFFBBAB8C),
+            icon: Icon(Icons.menu_book),
+            label: "Materi",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFFBBAB8C),
+            icon: Icon(Icons.youtube_searched_for),
+            label: "Identifikasi",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFFBBAB8C),
+            icon: Icon(Icons.ondemand_video),
+            label: "Video",
+          ),
+          BottomNavigationBarItem(
+            backgroundColor: Color(0xFFBBAB8C),
+            icon: Icon(Icons.assignment_outlined),
+            label: "Test",
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onItemTapped,
       ),
     );
   }

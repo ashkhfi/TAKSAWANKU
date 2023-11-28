@@ -20,7 +20,7 @@ class _ViewPdfState extends State<ViewPdf> {
       appBar: AppBar(title: Text(widget.title)),
       backgroundColor: Colors.white,
       body: Container(
-        height: MediaQuery.sizeOf(context).height - 400,
+        height: MediaQuery.sizeOf(context).height,
         child: SfPdfViewer.asset(
           widget.file,
         ),

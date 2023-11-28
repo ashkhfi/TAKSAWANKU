@@ -6,62 +6,56 @@ class Video extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text("Video"),
+     appBar: AppBar(
+        title:  Text(
+          "Video",
+          style: TextStyle(color:Colors.grey[700]),
+        ),
+        automaticallyImplyLeading: false,
+        backgroundColor: Color(0xFFFFF6DC),
         centerTitle: true,
       ),
-      body: Column(
-        // Ganti Expanded dengan Column
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Expanded(
-            // Ganti Expanded dengan Column
-            child: Container(
-              margin: EdgeInsets.only(left: 10, right: 10, top: 30),
-              child: Column(
-                children: [
-                  Container(
-                    width: MediaQuery.of(context).size.width,
-                    height: MediaQuery.of(context).size.height / 12,
-                    child: Card(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10.0),
-                      ),
-                      child: Center(
-                        child: Column(
-                          children: [
-                            ListTile(
-                              selected: false,
-                              leading: Icon(
-                                Icons.video_library_rounded,
-                                size: 30,
-                                color: Colors.orange,
-                              ),
-                              title: const Text(
-                                "Amphibi",
-                                style: TextStyle(fontSize: 20),
-                              ),
-                              trailing: IconButton(
-                                onPressed: () {
-                                  showDialog(
-                                      context: context,
-                                      builder: (context) =>
-                                          VideoPlayerDialog());
-                                },
-                                icon: const Icon(Icons.play_arrow_rounded),
-                                iconSize: 40.0,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/bg.jpg'), // Ganti dengan path gambar latar belakang Anda
+            fit: BoxFit.cover,
           ),
-        ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(8.0),
+          child: Column(
+            
+            children: [
+              Card(
+                child: ListTile(
+                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+                  tileColor:  Color(0xFFFAEED1),
+                  selected: false,
+                  leading: Icon(
+                    Icons.video_library_rounded,
+                    size: 30,
+                  ),
+                  title: const Text(
+                    "Amphibi",
+                    style: TextStyle(fontSize: 20),
+                  ),
+                  trailing: IconButton(
+                    onPressed: () {
+                      showDialog(
+                          context: context,
+                          builder: (context) =>
+                              VideoPlayerDialog());
+                    },
+                    icon: const Icon(Icons.play_arrow_rounded),
+                    iconSize: 40.0,
+                  ),
+                ),
+              ),
+            ],
+          ),
+        ),
       ),
     );
   }
