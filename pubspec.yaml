@@ -96,6 +96,8 @@ flutter:
     - assets/logo.png
     - assets/onboarding.jpg
     - assets/bg.jpg
+    - assets/bg_video.jpg
+
   #   - images/a_dot_ham.jpeg
   # flutter_native_splash-development.yaml
 

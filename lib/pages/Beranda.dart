@@ -61,16 +61,16 @@ class _BerandaState extends State<Beranda> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(
+        title: Text(
           "Beranda",
-          style: TextStyle(color:Colors.grey[700]),
+          style: TextStyle(color: Colors.grey[700]),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFFFF6DC),
+        backgroundColor: const Color(0xFFFDC288),
         centerTitle: true,
       ),
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage(
                 'assets/bg.jpg'), // Ganti dengan path gambar latar belakang Anda
@@ -101,8 +101,8 @@ class _BerandaState extends State<Beranda> {
                     return GestureDetector(
                       onTap: () => _controller.animateToPage(entry.key),
                       child: Container(
-                        width: 12.0,
-                        height: 12.0,
+                        width: 14.0,
+                        height: 14.0,
                         margin: const EdgeInsets.symmetric(
                             vertical: 8.0, horizontal: 4.0),
                         decoration: BoxDecoration(
@@ -171,21 +171,22 @@ Widget IconText(
       );
     },
     child: Container(
-      margin: EdgeInsets.all(10),
+      margin: const EdgeInsets.all(17),
       decoration: BoxDecoration(
-          color: Color(0xFFFAEED1), borderRadius: BorderRadius.circular(10)),
+          color: const Color(0xFFFAEED1),
+          borderRadius: BorderRadius.circular(13)),
       child: Column(
         children: [
           Image(
             image: AssetImage(assets),
-            width: 100,
-            height: 100,
+            width: 120,
+            height: 120,
           ),
           Text(
             title,
-            style: const TextStyle(fontSize: 20, color: Colors.black54),
+            style: const TextStyle(fontSize: 16, color: Colors.black54),
           ),
-          SizedBox(
+          const SizedBox(
             height: 10,
           )
         ],
