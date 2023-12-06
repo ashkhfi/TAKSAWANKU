@@ -57,8 +57,8 @@ class _OnboardingState extends State<Onboarding> {
     });
 
     // Delay untuk simulasi pindah halaman setelah beberapa detik (ganti sesuai kebutuhan)
-    Future.delayed(const Duration(seconds: 2), () {
-      Navigator.of(context).push(_createRoute()); // Pindah halaman
+    Future.delayed(const Duration(milliseconds: 500), () {
+      Navigator.of(context).pushReplacement(_createRoute()); // Pindah halaman
     }).whenComplete(() {
       setState(() {
         _isLoading = true;

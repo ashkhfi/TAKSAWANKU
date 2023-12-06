@@ -60,31 +60,31 @@ class _MyHomePageState extends State<MyHomePage> {
                           : const Text("data"),
       bottomNavigationBar: BottomNavigationBar(
         showUnselectedLabels: true,
-        selectedItemColor:  const Color(0xFFFAEED1),
+        selectedItemColor:  const Color(0xFF1A1A1A),
         unselectedItemColor: Colors.grey[700],
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            backgroundColor: Color(0xFFBBAB8C),
+            backgroundColor: Color(0xFFF7E6C4),
             label: "Beranda",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFBBAB8C),
+            backgroundColor: Color(0xFFF7E6C4),
             icon: Icon(Icons.menu_book),
             label: "Materi",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFBBAB8C),
+            backgroundColor: Color(0xFFF7E6C4),
             icon: Icon(Icons.youtube_searched_for),
             label: "Identifikasi",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFBBAB8C),
+            backgroundColor: Color(0xFFF7E6C4),
             icon: Icon(Icons.ondemand_video),
             label: "Video",
           ),
           BottomNavigationBarItem(
-            backgroundColor: Color(0xFFBBAB8C),
+            backgroundColor: Color(0xFFF7E6C4),
             icon: Icon(Icons.assignment_outlined),
             label: "Test",
           ),

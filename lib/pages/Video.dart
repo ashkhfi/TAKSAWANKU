@@ -12,7 +12,7 @@ class Video extends StatelessWidget {
           style: TextStyle(color:Colors.grey[700]),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: Color(0xFFFFF6DC),
+        backgroundColor: Color(0xFFFDC288),
         centerTitle: true,
       ),
       body: Container(
