@@ -31,47 +31,13 @@ class _MateriState extends State<Materi> {
         backgroundColor: Color(0xFFFDC288),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          
-          Container(
-            decoration: BoxDecoration(
-              image: DecorationImage(
-                image: AssetImage(
-                    'assets/bg.jpg'), // Ganti dengan path gambar latar belakang Anda
-                fit: BoxFit.cover,
-              ),
-            ),
-            child: Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: ListView.builder(
-                itemCount: daftarMateri.length,
-                itemBuilder: (context, index) {
-                  MateriModel materi = daftarMateri[index];
-                  return Card(
-                    child: ListTile(
-                      tileColor:Color(0xFFFAEED1),
-                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
-                      leading: const Icon(Icons.book, size: 30),
-                      title: Text(materi.nama),
-                      // Tambahkan aksi atau fungsi yang diinginkan saat ListTile diklik
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) =>
-                                  ViewPdf(title: materi.nama, file: materi.file)),
-                        );
-                      },
-                    ),
-                  );
-                },
-              ),
-            ),
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            image: AssetImage(
+                'assets/bg.jpg'), // Ganti dengan path gambar latar belakang Anda
+            fit: BoxFit.cover,
           ),
-
-        ],
-
         ),
         child: Padding(
           padding: const EdgeInsets.all(8.0),
@@ -100,6 +66,7 @@ class _MateriState extends State<Materi> {
             },
           ),
         ),
+      ),
     );
   }
 }
