@@ -1,25 +1,26 @@
 import 'package:flutter/material.dart';
-import 'package:chewie/chewie.dart';
-import 'package:video_player/video_player.dart';
+import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class VideoPlayerDialog extends StatefulWidget {
+  final String youtubeId;
+
+  const VideoPlayerDialog({required this.youtubeId});
   @override
   _VideoPlayerDialogState createState() => _VideoPlayerDialogState();
 }
 
 class _VideoPlayerDialogState extends State<VideoPlayerDialog> {
-  late ChewieController _chewieController;
-  late VideoPlayerController _videoPlayerController;
+  late YoutubePlayerController _controller;
 
   @override
   void initState() {
     super.initState();
-    _videoPlayerController = VideoPlayerController.asset("assets/google.mp4");
-    _chewieController = ChewieController(
-      videoPlayerController: _videoPlayerController,
-      aspectRatio: _videoPlayerController.value.aspectRatio,
-      autoPlay: true,
-      looping: true,
+    _controller = YoutubePlayerController(
+      initialVideoId: widget.youtubeId,
+      flags: YoutubePlayerFlags(
+        autoPlay: true,
+        mute: false,
+      ),
     );
   }
 
@@ -29,8 +30,17 @@ class _VideoPlayerDialogState extends State<VideoPlayerDialog> {
       backgroundColor: Colors.transparent,
       child: Container(
         height: 400.0,
-        child: Chewie(
-          controller: _chewieController,
+        child: YoutubePlayer(
+          controller: _controller,
+          showVideoProgressIndicator: true,
+          progressIndicatorColor: Colors.amber,
+          progressColors: ProgressBarColors(
+            playedColor: Colors.amber,
+            handleColor: Colors.amberAccent,
+          ),
+          onReady: () {
+            // Jika diperlukan, tambahkan logika pemanggilan listener di sini
+          },
         ),
       ),
     );
@@ -38,8 +48,8 @@ class _VideoPlayerDialogState extends State<VideoPlayerDialog> {
 
   @override
   void dispose() {
-    _chewieController.dispose();
-    _videoPlayerController.dispose();
+    // Matikan controller ketika widget dihancurkan
+    _controller.dispose();
     super.dispose();
   }
 }

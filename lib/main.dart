@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:taskwanku1/pages/intro.dart';
 
 import './pages/Beranda.dart';
 import './pages/Identifikasi.dart';
@@ -23,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home: const Onboarding(),
+      home:  Onboarding(),
     );
   }
 }

@@ -46,6 +46,8 @@ dependencies:
   syncfusion_flutter_pdfviewer: ^23.1.44
   carousel_slider: ^4.2.1
   flutter_circular_text: ^0.3.1
+  intro_views_flutter: ^3.2.0
+  youtube_player_flutter: ^8.1.2
 
 
 dev_dependencies:
@@ -87,7 +89,6 @@ flutter:
     - assets/file/
     - assets/images/
     - assets/cover.png
-    - assets/google.mp4
     - assets/splash_screen.png
     - assets/Pengantar.png
     - assets/Tatatertib.png

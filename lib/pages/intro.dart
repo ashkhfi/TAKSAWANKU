@@ -1,39 +1,27 @@
 import 'package:flutter/material.dart';
 import 'package:intro_views_flutter/intro_views_flutter.dart';
 
-void main() {
-  runApp(MyApp());
-}
-
-class MyApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: IntroductionScreen(),
-    );
-  }
-}
 
 class IntroductionScreen extends StatelessWidget {
   final pages = [
     PageViewModel(
-      title: "Welcome",
-      body: "This app has amazing features.",
-      image: Center(
+      title: Text("Welcome"),
+      body: Text("This app has amazing features."),
+      mainImage: Center(
         child: Image.asset("assets/welcome.png", height: 175.0),
       ),
     ),
     PageViewModel(
-      title: "Easy Navigation",
-      body: "Use easy and intuitive navigation.",
-      image: Center(
+      title: Text("Easy Navigation"),
+      body: Text("Use easy and intuitive navigation."),
+      mainImage: Center(
         child: Image.asset("assets/navigation.png", height: 175.0),
       ),
     ),
     PageViewModel(
-      title: "Get Started",
-      body: "Explore all the features and make the most of this app.",
-      image: Center(
+      title: Text("Get Started"),
+      body: Text("Explore all the features and make the most of this app."),
+      mainImage: Center(
         child: Image.asset("assets/get_started.png", height: 175.0),
       ),
     ),
