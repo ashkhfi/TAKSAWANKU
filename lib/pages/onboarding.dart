@@ -24,7 +24,7 @@ class _OnboardingState extends State<Onboarding> {
             image: DecorationImage(
               fit: BoxFit.contain,
               image: AssetImage(
-                'assets/onboarding.jpg',
+                'assets/logo (2).png',
               ),
             ),
           ),

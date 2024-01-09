@@ -25,7 +25,7 @@ class _VideoState extends State<Video> {
           style: TextStyle(color:Colors.grey[700]),
         ),
         automaticallyImplyLeading: false,
-        backgroundColor: const Color(0xFFFDC288),
+        backgroundColor: const Color(0xFFFAEED1),
         centerTitle: true,
       ),
       body: Container(

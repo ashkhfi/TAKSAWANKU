@@ -6,7 +6,7 @@ import './pages/Identifikasi.dart';
 import './pages/Test.dart';
 import './pages/Video.dart';
 import './pages/Materi.dart';
-import 'pages/onboarding.dart';
+
 
 void main() {
   runApp(MyApp());
@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
           ),
         ),
       ),
-      home:  Onboarding(),
+      home:  IntroductionScreen(),
     );
   }
 }
@@ -42,30 +42,30 @@ class _MyHomePageState extends State<MyHomePage> {
     bool konfirmasiKeluar = await showDialog(
       context: context,
       builder: (context) => AlertDialog(
-        title: Text('Konfirmasi'),
-        content: Text('Apakah Anda yakin ingin keluar?'),
+        title: const Text('Konfirmasi'),
+        content: const Text('Apakah Anda yakin ingin keluar?'),
         actions: [
           ElevatedButton(
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0xFFFAEED1))),
             onPressed: () {
               Navigator.of(context).pop(true); // Konfirmasi keluar
             },
-            child: Text('Ya', style: TextStyle(color: Colors.black),),
+            child: const Text('Ya', style: TextStyle(color: Colors.black),),
           ),
           ElevatedButton(
-            style: ButtonStyle(
+            style: const ButtonStyle(
                 backgroundColor: MaterialStatePropertyAll(Color(0xFFFAEED1))),
             onPressed: () {
               Navigator.of(context).pop(false); // Batal keluar
             },
-            child: Text('Tidak', style: TextStyle(color: Colors.black),),
+            child: const Text('Tidak', style: TextStyle(color: Colors.black),),
           ),
         ],
       ),
     );
 
-    return konfirmasiKeluar ?? false;
+    return konfirmasiKeluar;
   }
 
   void _onItemTapped(int index) {
