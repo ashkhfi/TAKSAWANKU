@@ -1,17 +1,14 @@
-import 'package:animated_introduction/animated_introduction.dart';
 import 'package:flutter/material.dart';
-
+import 'package:animated_introduction/animated_introduction.dart';
 import 'onboarding.dart';
 
-
-
-
-  final List<SingleIntroScreen> pages = [
+final List<SingleIntroScreen> pages = [
   const SingleIntroScreen(
     imageWithBubble: false,
     imageHeightMultiple: 0.7,
     title: 'Selamat Datang!',
-    description: 'Berikut mini tour aplikasi Takswanku\n\nSemoga dapat meningkatkan pengalaman Praktikum Taksonomi Hewan kalian ',
+    description:
+    'Berikut mini tour aplikasi Takswanku\n\nSemoga dapat meningkatkan pengalaman Praktikum Taksonomi Hewan kalian ',
     imageAsset: 'assets/logo.png',
   ),
   const SingleIntroScreen(
@@ -23,13 +20,15 @@ import 'onboarding.dart';
   const SingleIntroScreen(
     imageWithBubble: false,
     title: 'Menu Materi',
-    description: 'Kalian dapat mempelajari materi seputaran amphibi dengan mengklik salah satu dari keempat menu yang tersedia ',
+    description:
+    'Kalian dapat mempelajari materi seputaran amphibi dengan mengklik salah satu dari keempat menu yang tersedia ',
     imageAsset: 'assets/materi.png',
   ),
   const SingleIntroScreen(
     imageWithBubble: false,
     title: "Menu Identifikasi",
-    description: 'Tampilan akan mengarah ke website amphibiaweb.org Jelajahi beragam spesies amphibia dengan:\nKlik menu(pojok kanan atas)->Meet the Amphibians->Klik sesuai ordo yang ingin kalian jelajahi',
+    description:
+    'Tampilan akan mengarah ke website amphibiaweb.org Jelajahi beragam spesies amphibia dengan:\nKlik menu(pojok kanan atas)->Meet the Amphibians->Klik sesuai ordo yang ingin kalian jelajahi',
     imageAsset: 'assets/indentifikasi.png',
   ),
   const SingleIntroScreen(
@@ -46,9 +45,15 @@ import 'onboarding.dart';
   ),
 ];
 
-/// Example page
 class IntroductionScreen extends StatelessWidget {
-  const IntroductionScreen({super.key});
+  const IntroductionScreen({Key? key});
+
+  void _skipButtonPressed(BuildContext context) {
+    Navigator.pushReplacement(
+      context,
+      MaterialPageRoute(builder: (context) => Onboarding()),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,34 +63,35 @@ class IntroductionScreen extends StatelessWidget {
       doneText: "Done",
       onDone: () {
         Navigator.push(
-              context,
-              PageRouteBuilder(
-                pageBuilder: (context, animation, secondaryAnimation) =>
-                    Onboarding(),
-                transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                  const begin = Offset(1.0, 0.0);
-                  const end = Offset.zero;
-                  const curve = Curves.easeInOut;
+          context,
+          PageRouteBuilder(
+            pageBuilder: (context, animation, secondaryAnimation) => Onboarding(),
+            transitionsBuilder: (context, animation, secondaryAnimation, child) {
+              const begin = Offset(1.0, 0.0);
+              const end = Offset.zero;
+              const curve = Curves.easeInOut;
 
-                  var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
+              var tween = Tween(begin: begin, end: end).chain(CurveTween(curve: curve));
 
-                  var offsetAnimation = animation.drive(tween);
+              var offsetAnimation = animation.drive(tween);
 
-                  return SlideTransition(
-                    position: offsetAnimation,
-                    child: child,
-                  );
-                },
-              ),
-            );
-      
+              return SlideTransition(
+                position: offsetAnimation,
+                child: child,
+              );
+            },
+          ),
+        );
+      },
+      onSkip: () {
+        _skipButtonPressed(context);
       },
       topHeightForFooter: MediaQuery.sizeOf(context).height / 1.5,
       footerBgColor: Color(0xFFFAEED1),
       textColor: Colors.black87,
       activeDotColor: Colors.black,
       inactiveDotColor: Colors.black26,
+      skipText: "Skip",
     );
   }
-
 }
